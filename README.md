@@ -1,9 +1,9 @@
 <div align="center">
-  <img src="https://via.placeholder.com/1000x250/1a1b26/7aa2f7?text=Subtle+Aesthetic+Banner+Image+Here" alt="Profile Banner"/>
+  <img src="https://wallpapers.com/images/high/genshin-impact-background-c8vez96c9ugk08ek.webp" alt="Profile Banner"/>
 </div>
 
-<h1 align="center">Hi there, I'm Mukul 👋</h1>
-<h3 align="center">AI Engineer | Game AI & Generative AI | M.S. Applied Machine Learning @ UMD</h3>
+<h1 align="center">Hi there, I'm Mukul Rayana 👋</h1>
+<h3 align="center">AI Engineer | Game AI & Generative AI | RAG & LLM Ops M.S. Applied Machine Learning @ UMD</h3>
 
 <p align="center">
   Building intelligent, emotionally aware systems and pushing the boundaries of real-time AI generation. 
@@ -17,7 +17,7 @@
 - 🌱 **Currently Mastering:** LLMOps, RAG architectures, **vLLM**, and **ONNX runtime** for high-performance deployments.
 - 🎓 **Education:** M.S. in Applied Machine Learning at the University of Maryland (Expected May 2026).
 - 💼 **Seeking:** Full-time roles as an **AI Engineer, Game AI Engineer, or GenAI Engineer**.
-- 🎮 **Beyond Code:** You can find me optimizing team comps in Genshin Impact or keeping my indoor plants alive.
+- 🎮 **Beyond Code:** You can find me optimizing team comps in Genshin Impact or keeping my indoor plants alive. Perhaps even running outdoors or at climbing gyms.
 
 ---
 
@@ -59,12 +59,6 @@
 
 ---
 
-### 📊 GitHub Activity
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&theme=tokyonight&hide_border=true" alt="Mukul's GitHub Stats" width="48%" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_GITHUB_USERNAME&theme=tokyonight&hide_border=true" alt="Mukul's GitHub Streak" width="48%" />
-</div>
 
 <p align="center">
   <a href="mailto:YOUR_EMAIL@umd.edu">
