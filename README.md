@@ -55,7 +55,7 @@
 | **[Robotic Sword Defense Agent ⚔️](#)** | Trained an autonomous agent to defend against attacks using Reinforcement Learning. | `PyTorch`, `RL`, `C++` |
 | **[Voice Driven Panoramic VR 🥽](#)** | Published research paper (IEEE IDCIoT 2024) on generating VR environments via voice commands. | `Generative AI`, `VR` |
 
-> *Note: Click the links above to see system architecture diagrams and video demos in the repository READMEs.* *(Make sure to actually link your repos here!)*
+> *Note: Click the links above to see system architecture diagrams and video demos in the repository READMEs.*
 
 ---
 
