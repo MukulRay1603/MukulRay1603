@@ -17,7 +17,7 @@
 
   <!-- ✦ CONTACT BADGES -->
   <a href="https://linkedin.com/in/mukul-rayana"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>&nbsp;
-  <a href="mailto:mukulray@umd.edu"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>&nbsp;
+  <a href="mailto:mukulray@terpmail.umd.edu"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>&nbsp;
   <a href="https://huggingface.co/spaces/MukulRay"><img src="https://img.shields.io/badge/🤗%20HuggingFace-FFD21E?style=for-the-badge" /></a>&nbsp;
   <a href="https://ieeexplore.ieee.org/document/10467441"><img src="https://img.shields.io/badge/IEEE%20Published-00629B?style=for-the-badge&logo=ieee&logoColor=white" /></a>
 
