@@ -209,6 +209,6 @@ Speech → 360° image pipeline (Whisper · GPT-Neo · Stable Diffusion) · **2.
 
   <br>
 
-  *✦ "The stars, the sky... it's all a gigantic hoax." — Mona, probably ✦*
+  *✦ "The stars, the sky... it's all a gigantic hoax." ✦*
 
 </div>
