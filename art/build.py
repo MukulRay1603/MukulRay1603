@@ -149,9 +149,9 @@ def constellation(svg, t, pts, cls, delay):
 
 # ───────────────────────── banner ─────────────────────────
 def banner(t, mode):
-    W, H = 1280, 400
-    s = SVG(W, H, 'Mukul Rayana. AI/ML Engineer: agentic AI, LLMOps, and reinforcement learning for game AI.')
-    s.add(f'<defs><radialGradient id="glow" cx="50%" cy="46%" r="60%"><stop offset="0" stop-color="{t["gold"]}" stop-opacity=".16"/>'
+    W, H = 880, 330
+    s = SVG(W, H, 'Mukul Rayana. AI/ML Engineer: agentic AI, LLMOps, RAG and reinforcement learning for game AI.')
+    s.add(f'<defs><radialGradient id="glow" cx="50%" cy="44%" r="60%"><stop offset="0" stop-color="{t["gold"]}" stop-opacity=".16"/>'
           f'<stop offset="1" stop-color="{t["gold"]}" stop-opacity="0"/></radialGradient>'
           f'<linearGradient id="bgg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{t["bg2"]}"/><stop offset="1" stop-color="{t["bg"]}"/></linearGradient>'
           f'<linearGradient id="goldtx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{t["gold"]}"/>'
@@ -159,42 +159,36 @@ def banner(t, mode):
           f'<stop offset=".60" stop-color="{t["gold"]}"/>'
           f'<animateTransform attributeName="gradientTransform" type="translate" values="-1 0;1 0;1 0" keyTimes="0;.4;1" dur="7s" repeatCount="indefinite"/>'
           f'<stop offset="1" stop-color="{t["gold"]}"/></linearGradient></defs>')
-    s.add(f'<rect width="{W}" height="{H}" rx="22" fill="url(#bgg)"/><rect width="{W}" height="{H}" rx="22" fill="url(#glow)"/>')
-    stars(s, t, 90, 7, (12, 12, W - 12, H - 12))
-    rune(s, t, W / 2, 180, .52)
-    constellation(s, t, [(70, 300), (130, 250), (205, 268), (250, 205), (330, 180), (300, 120)], 'c1', 0)
-    constellation(s, t, [(1210, 90), (1140, 140), (1065, 120), (1010, 175), (950, 160), (980, 250)], 'c2', 6)
-    # a spark orbiting the rune
-    s.add(f'<g transform="translate({W / 2} 180)"><g class="orbit"><circle cx="150" cy="0" r="3.2" fill="{t["gold_hi"]}"/>'
-          f'<circle cx="150" cy="0" r="9" fill="{t["gold_hi"]}" opacity=".18"/></g></g>')
+    s.add(f'<rect width="{W}" height="{H}" rx="18" fill="url(#bgg)"/><rect width="{W}" height="{H}" rx="18" fill="url(#glow)"/>')
+    stars(s, t, 70, 7, (10, 10, W - 10, H - 10))
+    rune(s, t, W / 2, 150, .44)
+    constellation(s, t, [(40, 270), (85, 228), (140, 240), (172, 190), (228, 168), (205, 118)], 'c1', 0)
+    constellation(s, t, [(840, 70), (792, 108), (740, 94), (702, 140), (660, 128), (682, 210)], 'c2', 6)
+    s.add(f'<g transform="translate({W / 2} 150)"><g class="orbit"><circle cx="128" cy="0" r="3" fill="{t["gold_hi"]}"/>'
+          f'<circle cx="128" cy="0" r="8" fill="{t["gold_hi"]}" opacity=".18"/></g></g>')
     s.css.append('.orbit{animation:spin 26s linear infinite}')
-    # shooting star
-    s.add(f'<g class="shoot"><path d="M0 0h-120" stroke="{t["gold_hi"]}" stroke-width="1.6" stroke-linecap="round" opacity=".8"/></g>')
-    s.css.append('.shoot{transform:translate(1050px,40px) rotate(160deg);opacity:0;animation:shoot 11s ease-in 3s infinite}'
-                 '@keyframes shoot{0%{opacity:0;transform:translate(1050px,40px) rotate(160deg)}3%{opacity:1}'
-                 '10%{opacity:0;transform:translate(820px,125px) rotate(160deg)}100%{opacity:0;transform:translate(820px,125px) rotate(160deg)}}')
-    s.text(W / 2, 92, 'AI / ML ENGINEER', size=17, fill=t['gold'], weight=800, anchor='middle', ls=6)
-    # name: MUKUL in title ink, RAYANA in gold
-    size = 84
-    w1, w2, gap = width('MUKUL', 'serif', size, True), width('RAYANA', 'serif', size, True), 26
+    s.add(f'<g class="shoot"><path d="M0 0h-90" stroke="{t["gold_hi"]}" stroke-width="1.5" stroke-linecap="round" opacity=".8"/></g>')
+    s.css.append('.shoot{opacity:0;animation:shoot 11s ease-in 3s infinite}'
+                 '@keyframes shoot{0%{opacity:0;transform:translate(760px,30px) rotate(160deg)}3%{opacity:1}'
+                 '10%{opacity:0;transform:translate(590px,95px) rotate(160deg)}100%{opacity:0;transform:translate(590px,95px) rotate(160deg)}}')
+    s.text(W / 2, 74, 'AI / ML ENGINEER', size=15, fill=t['gold'], weight=800, anchor='middle', ls=5)
+    size = 66
+    w1, w2, gap = width('MUKUL', 'serif', size, True), width('RAYANA', 'serif', size, True), 20
     x0 = W / 2 - (w1 + gap + w2) / 2
-    s.text(x0, 205, 'MUKUL', 'serif', size, t['title'], 700, ls=2)
-    s.text(x0 + w1 + gap, 205, 'RAYANA', 'serif', size, 'url(#goldtx)', 700, ls=2)
-    # divider with diamond
-    s.add(f'<path d="M{W / 2 - 170} 238h150M{W / 2 + 20} 238h150" stroke="{t["gold"]}" stroke-opacity=".6"/>'
-          f'<path d="M{W / 2} 232l6 6-6 6-6-6z" fill="{t["gold"]}"/>')
+    s.text(x0, 168, 'MUKUL', 'serif', size, t['title'], 700, ls=1.5)
+    s.text(x0 + w1 + gap, 168, 'RAYANA', 'serif', size, 'url(#goldtx)', 700, ls=1.5)
+    s.add(f'<path d="M{W / 2 - 140} 196h124M{W / 2 + 16} 196h124" stroke="{t["gold"]}" stroke-opacity=".6"/>'
+          f'<path d="M{W / 2} 191l5 5-5 5-5-5z" fill="{t["gold"]}"/>')
     for i, line in enumerate(['Agentic AI & multi-agent systems', 'LLMOps, RAG & fine-tuning in production',
                               'Reinforcement learning for game AI']):
-        s.text(W / 2, 282, line, size=24, fill=t['text'], weight=600, anchor='middle',
+        s.text(W / 2, 238, line, size=22, fill=t['text'], weight=700, anchor='middle',
                extra=f'class="cyc" style="animation-delay:{i * 4}s"')
     s.css.append('.cyc{opacity:0;transform-box:fill-box;transform-origin:center;animation:cyc 12s ease-in-out infinite}'
                  '@keyframes cyc{0%{opacity:0;transform:translateY(10px)}6%,29%{opacity:1;transform:none}'
                  '35%,100%{opacity:0;transform:translateY(-8px)}}'
                  '@media (prefers-reduced-motion:reduce){.cyc{opacity:0}.cyc:first-of-type{opacity:1}}')
-    s.text(W / 2, 320, 'M.S. Applied Machine Learning, University of Maryland  ·  Open to work', size=18,
-           fill=t['muted'], anchor='middle')
+    s.text(W / 2, 276, 'M.S. Applied Machine Learning, University of Maryland', size=16.5, fill=t['muted'], anchor='middle')
     s.save(f'banner-{mode}.svg')
-
 
 # ───────────────────────── buttons ─────────────────────────
 ICONS = {
@@ -227,17 +221,16 @@ def button(t, mode, name, label, icon, primary=False):
 
 # ───────────────────────── section titles ─────────────────────────
 def title(t, mode, name, label):
-    W, H = 1280, 64
+    W, H = 880, 56
     s = SVG(W, H, label)
-    tw = width(label.upper(), 'serif', 30, True) + len(label) * 2.5
-    s.add(f'<path d="M4 34l6-6 6 6-6 6z" fill="{t["gold"]}"/>')
-    s.text(28, 45, label.upper(), 'serif', 30, t['title'], 700, ls=2.5)
-    s.add(f'<path d="M{40 + tw} 34H{W - 4}" stroke="{t["gold"]}" stroke-opacity=".45"/>')
-    s.add(f'<circle cx="{40 + tw}" cy="34" r="2.6" fill="{t["gold_hi"]}" class="run"/>')
+    tw = width(label.upper(), 'serif', 25, True) + len(label) * 2
+    s.add(f'<path d="M3 30l6-6 6 6-6 6z" fill="{t["gold"]}"/>')
+    s.text(25, 39, label.upper(), 'serif', 25, t['title'], 700, ls=2)
+    s.add(f'<path d="M{34 + tw} 30H{W - 3}" stroke="{t["gold"]}" stroke-opacity=".45"/>')
+    s.add(f'<circle cx="{34 + tw}" cy="30" r="2.6" fill="{t["gold_hi"]}" class="run"/>')
     s.css.append(f'.run{{animation:run 9s ease-in-out infinite}}@keyframes run{{0%{{transform:translateX(0);opacity:0}}'
-                 f'10%{{opacity:1}}60%{{transform:translateX({W - 50 - tw:.0f}px);opacity:0}}100%{{opacity:0}}}}')
+                 f'10%{{opacity:1}}60%{{transform:translateX({W - 40 - tw:.0f}px);opacity:0}}100%{{opacity:0}}}}')
     s.save(f'title-{name}-{mode}.svg')
-
 
 # ───────────────────────── highlights ─────────────────────────
 HIGHLIGHTS = [
@@ -249,27 +242,25 @@ HIGHLIGHTS = [
 
 
 def highlights(t, mode):
-    W, H, gap = 1280, 230, 20
-    cw = (W - gap * 3) / 4
+    W, gap, ch = 880, 16, 172
+    cw = (W - gap) / 2
+    H = ch * 2 + gap + 4
     s = SVG(W, H, 'Highlights: 1st place at the UMD Smith Agentic AI Challenge 2026; 3x faster production QA inference at BeeBox Studios; IEEE IDCIoT 2024 publication; 3 live demos.')
     s.add(f'<defs><linearGradient id="foil" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{t["gold_lo"]}"/>'
           f'<stop offset=".5" stop-color="{t["gold_hi"]}"/><stop offset="1" stop-color="{t["gold"]}"/></linearGradient></defs>')
     for i, (v, l, sub, x_) in enumerate(HIGHLIGHTS):
-        x = i * (cw + gap)
-        panel(s, t, x, 2, cw, H - 4)
-        s.add(f'<rect x="{x + .75}" y="2.75" width="{cw - 1.5}" height="{H - 5.5}" rx="16" fill="none" stroke="{t["gold_hi"]}" '
+        x, y = (i % 2) * (cw + gap), 2 + (i // 2) * (ch + gap)
+        panel(s, t, x, y, cw, ch)
+        s.add(f'<rect x="{x + .75}" y="{y + .75}" width="{cw - 1.5}" height="{ch - 1.5}" rx="16" fill="none" stroke="{t["gold_hi"]}" '
               f'stroke-width="2" pathLength="1000" class="trail" style="animation-delay:-{i * 2.5}s"/>')
-        s.text(x + 24, 62, v, 'serif', 34, 'url(#foil)' if i == 0 else t['gold_hi'], 700)
-        for j, ln in enumerate(wrap(l, 'sans', 17, cw - 48, True)):
-            s.text(x + 24, 98 + j * 22, ln, size=17, fill=t['title'], weight=800)
-        for j, ln in enumerate(wrap(sub, 'sans', 15, cw - 48)[:3]):
-            s.text(x + 24, 150 + j * 20, ln, size=15, fill=t['muted'])
-        s.add(f'<path d="M{x + 24} {H - 36}h{cw - 48}" stroke="{t["line"]}"/>')
-        s.text(x + 24, H - 16, x_, size=13.5, fill=t['gold'], weight=800)
+        s.text(x + 26, y + 50, v, 'serif', 32, 'url(#foil)' if i == 0 else t['gold_hi'], 700)
+        s.text(x + 26, y + 82, l, size=17.5, fill=t['title'], weight=800)
+        for j, ln in enumerate(wrap(sub, 'sans', 15, cw - 52)[:2]):
+            s.text(x + 26, y + 108 + j * 20, ln, size=15, fill=t['muted'])
+        s.text(x + 26, y + ch - 20, x_, size=14, fill=t['gold'], weight=800)
     s.css.append('.trail{stroke-dasharray:90 910;animation:trail 10s linear infinite;opacity:.85}'
                  '@keyframes trail{to{stroke-dashoffset:-1000}}')
     s.save(f'highlights-{mode}.svg')
-
 
 # ───────────────────────── project cards ─────────────────────────
 PROJECTS = [
@@ -357,65 +348,55 @@ def illo(svg, t, slug, a, cx, cy):
 
 
 def card(t, mode, p):
-    W, H = 620, 330
+    W, H = 430, 286
     a = t['acc'][p['acc']]
     s = SVG(W, H, f"{p['name']}: {p['sub']}. {p['metric']} {p['mlabel']}.")
     panel(s, t, 0, 0, W, H, accent=a)
-    s.add(f'<rect x="1.5" y="1.5" width="5" height="{H - 3}" rx="2.5" fill="{a}"/>')
-    s.text(32, 46, p['kicker'], size=13.5, fill=a, weight=800, ls=2.2)
-    illo(s, t, p['slug'], a, W - 92, 92)
-    s.text(32, 90, p['name'], 'serif', 31 if len(p['name']) < 16 else 26, t['title'], 700, ls=.5)
-    s.text(32, 120, p['sub'], size=16.5, fill=t['muted'])
-    s.text(32, 180, p['metric'], 'serif', 40, t['gold_hi'], 700)
-    mw = width(p['metric'], 'serif', 40, True) + 46
-    for j, ln in enumerate(wrap(p['mlabel'], 'sans', 15, W - mw - 40)[:2]):
-        s.text(mw, 166 + j * 19 - (0 if len(wrap(p['mlabel'], 'sans', 15, W - mw - 40)) > 1 else -8), ln, size=15, fill=t['text'])
-    # mini stats
-    for k, (v, l) in enumerate(p['minis']):
-        x = 32 + k * 290
-        s.add(f'<path d="M{x} 206h270" stroke="{t["line"]}"/>')
-        s.text(x, 234, v, 'serif', 21, t['title'], 700)
-        s.text(x + width(v, 'serif', 21, True) + 10, 233, l, size=14, fill=t['muted'])
-    # tags
-    x = 32
+    s.add(f'<rect x="1.5" y="1.5" width="4.5" height="{H - 3}" rx="2.2" fill="{a}"/>')
+    s.add(f'<g transform="translate({W - 72} 72) scale(.74)">'); illo(s, t, p['slug'], a, 0, 0); s.add('</g>')
+    s.text(26, 38, p['kicker'], size=12, fill=a, weight=800, ls=1.6)
+    nm = 24 if width(p['name'], 'serif', 24, True) < 262 else 19
+    s.text(26, 74, p['name'], 'serif', nm, t['title'], 700, ls=.4)
+    for j, ln in enumerate(wrap(p['sub'], 'sans', 14.5, 262)[:2]):
+        s.text(26, 98 + j * 19, ln, size=14.5, fill=t['muted'])
+    s.text(26, 166, p['metric'], 'serif', 34, t['gold_hi'], 700)
+    for j, ln in enumerate(wrap(p['mlabel'], 'sans', 14.5, W - 52)[:2]):
+        s.text(26, 192 + j * 19, ln, size=14.5, fill=t['text'])
+    x = 26
     for tag in p['tags']:
-        tw = width(tag, 'sans', 13.5, True) + 26
-        s.add(f'<rect x="{x}" y="270" width="{tw:.1f}" height="30" rx="15" fill="none" stroke="{t["line2"]}"/>')
-        s.text(x + tw / 2, 290, tag, size=13.5, fill=t['text'], weight=700, anchor='middle')
-        x += tw + 8
+        tw = width(tag, 'sans', 12.5, True) + 22
+        if x + tw > W - 20: break
+        s.add(f'<rect x="{x}" y="{H - 50}" width="{tw:.1f}" height="28" rx="14" fill="none" stroke="{t["line2"]}"/>')
+        s.text(x + tw / 2, H - 31, tag, size=12.5, fill=t['text'], weight=700, anchor='middle')
+        x += tw + 7
     s.save(f'card-{p["slug"]}-{mode}.svg')
 
-
 def now_strip(t, mode):
-    W, H = 1280, 92
+    W, H = 880, 96
     s = SVG(W, H, 'Now: open to AI/ML Engineer roles. Latest build: Eldervale, a browser co-op game. Latest research: human vs AI playtesters.')
     panel(s, t, 0, 0, W, H)
     ok = t['acc']['anemo']
-    s.add(f'<circle cx="40" cy="46" r="7" fill="{ok}"/><circle cx="40" cy="46" r="7" fill="none" stroke="{ok}" stroke-width="2" class="ping"/>')
+    s.add(f'<circle cx="34" cy="48" r="7" fill="{ok}"/><circle cx="34" cy="48" r="7" fill="none" stroke="{ok}" stroke-width="2" class="ping"/>')
     s.css.append('.ping{transform-box:fill-box;transform-origin:center;animation:ping 2.2s ease-out infinite}'
                  '@keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(2.8);opacity:0}}')
-    items = [('NOW', 'Open to AI/ML Engineer roles'), ('LATEST BUILD', 'Eldervale, a browser co-op game'),
-             ('LATEST RESEARCH', 'Human vs AI playtesters')]
-    x = 64
+    items = [('NOW', 'Open to AI/ML roles'), ('LATEST BUILD', 'Eldervale, browser co-op'), ('LATEST RESEARCH', 'Human vs AI playtesters')]
+    colw = (W - 60) / 3
     for i, (k, v) in enumerate(items):
-        s.text(x, 38, k, size=12.5, fill=t['gold'], weight=800, ls=2.4)
-        s.text(x, 64, v, size=18, fill=t['title'], weight=700)
-        x += max(width(v, 'sans', 18, True), width(k, 'sans', 12.5, True) + 30) + 70
-        if i < len(items) - 1:
-            s.add(f'<path d="M{x - 35} 24V68" stroke="{t["line2"]}"/>')
+        x = 58 + i * colw
+        s.text(x, 40, k, size=12.5, fill=t['gold'], weight=800, ls=2.2)
+        s.text(x, 66, v, size=17.5, fill=t['title'], weight=800)
+        if i: s.add(f'<path d="M{x - 18} 24V72" stroke="{t["line2"]}"/>')
     s.save(f'now-{mode}.svg')
-
 
 # ───────────────────────── footer ─────────────────────────
 def footer(t, mode):
-    W, H = 1280, 120
+    W, H = 880, 110
     s = SVG(W, H, 'Thanks for stopping by.')
-    stars(s, t, 30, 3, (0, 10, W, H - 10))
-    s.add(f'<path d="M{W / 2 - 260} 52h240M{W / 2 + 20} 52h240" stroke="{t["gold"]}" stroke-opacity=".5"/>'
-          f'<path d="M{W / 2} 44l8 8-8 8-8-8z" fill="{t["gold"]}"/>')
-    s.text(W / 2, 96, 'Thanks for stopping by  ·  mukulray1603.github.io', size=17, fill=t['muted'], anchor='middle')
+    stars(s, t, 26, 3, (0, 10, W, H - 10))
+    s.add(f'<path d="M{W / 2 - 200} 46h184M{W / 2 + 16} 46h184" stroke="{t["gold"]}" stroke-opacity=".5"/>'
+          f'<path d="M{W / 2} 39l7 7-7 7-7-7z" fill="{t["gold"]}"/>')
+    s.text(W / 2, 88, 'Thanks for stopping by  ·  mukulray1603.github.io', size=16, fill=t['muted'], anchor='middle')
     s.save(f'footer-{mode}.svg')
-
 
 BUTTONS = [('portfolio', 'Portfolio', 'globe', True), ('resume', 'Resumé', 'doc', False),
            ('linkedin', 'LinkedIn', 'linkedin', False), ('hf', 'Hugging Face', 'hf', False),
