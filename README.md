@@ -49,7 +49,7 @@
 
 <a href="https://ai-cargo-monitor-prod.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-demo-pharmachain-dark.svg"><img src="assets/btn-demo-pharmachain-light.svg" alt="PharmaChain live demo" height="44"></picture></a>
 <a href="https://huggingface.co/spaces/MukulRay/recon"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-demo-recon-dark.svg"><img src="assets/btn-demo-recon-light.svg" alt="RECON live demo" height="44"></picture></a>
-<a href="https://huggingface.co/spaces/MukulRay/Irminsul"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-demo-irminsul-dark.svg"><img src="assets/btn-demo-irminsul-light.svg" alt="Irminsul live demo" height="44"></picture></a>
+<a href="https://mukulray-irminsul.hf.space"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-demo-irminsul-dark.svg"><img src="assets/btn-demo-irminsul-light.svg" alt="Irminsul live demo" height="44"></picture></a>
 <a href="https://eldervale-game.netlify.app"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-demo-eldervale-dark.svg"><img src="assets/btn-demo-eldervale-light.svg" alt="Play Eldervale" height="44"></picture></a>
 
 </div>
