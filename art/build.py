@@ -135,6 +135,18 @@ def wrap(text, kind, size, maxw, bold=False):
     return lines + [cur]
 
 
+def constellation(svg, t, pts, cls, delay):
+    """Stars joined by a line that draws itself, holds, then fades."""
+    d = 'M' + ' L'.join(f'{x} {y}' for x, y in pts)
+    svg.add(f'<path d="{d}" fill="none" stroke="{t["gold"]}" stroke-width="1" stroke-opacity=".55" pathLength="100" '
+            f'class="draw" style="animation-delay:{delay}s"/>')
+    for x, y in pts:
+        svg.add(f'<circle cx="{x}" cy="{y}" r="2.4" fill="{t["gold_hi"]}"/>')
+    svg.css.append('.draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 12s ease-in-out infinite}'
+                   '@keyframes draw{0%{stroke-dashoffset:100;opacity:1}35%{stroke-dashoffset:0}80%{stroke-dashoffset:0;opacity:1}'
+                   '100%{stroke-dashoffset:0;opacity:0}}')
+
+
 # ───────────────────────── banner ─────────────────────────
 def banner(t, mode):
     W, H = 1280, 400
@@ -142,12 +154,20 @@ def banner(t, mode):
     s.add(f'<defs><radialGradient id="glow" cx="50%" cy="46%" r="60%"><stop offset="0" stop-color="{t["gold"]}" stop-opacity=".16"/>'
           f'<stop offset="1" stop-color="{t["gold"]}" stop-opacity="0"/></radialGradient>'
           f'<linearGradient id="bgg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{t["bg2"]}"/><stop offset="1" stop-color="{t["bg"]}"/></linearGradient>'
-          f'<linearGradient id="goldtx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{t["gold_lo"]}"/>'
-          f'<stop offset=".45" stop-color="{t["gold_hi"]}"/><stop offset=".55" stop-color="{"#fff7dd" if mode == "dark" else "#d2a24a"}"/>'
+          f'<linearGradient id="goldtx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{t["gold"]}"/>'
+          f'<stop offset=".40" stop-color="{t["gold"]}"/><stop offset=".5" stop-color="{"#fff7dd" if mode == "dark" else "#e0b45a"}"/>'
+          f'<stop offset=".60" stop-color="{t["gold"]}"/>'
+          f'<animateTransform attributeName="gradientTransform" type="translate" values="-1 0;1 0;1 0" keyTimes="0;.4;1" dur="7s" repeatCount="indefinite"/>'
           f'<stop offset="1" stop-color="{t["gold"]}"/></linearGradient></defs>')
     s.add(f'<rect width="{W}" height="{H}" rx="22" fill="url(#bgg)"/><rect width="{W}" height="{H}" rx="22" fill="url(#glow)"/>')
     stars(s, t, 90, 7, (12, 12, W - 12, H - 12))
     rune(s, t, W / 2, 180, .52)
+    constellation(s, t, [(70, 300), (130, 250), (205, 268), (250, 205), (330, 180), (300, 120)], 'c1', 0)
+    constellation(s, t, [(1210, 90), (1140, 140), (1065, 120), (1010, 175), (950, 160), (980, 250)], 'c2', 6)
+    # a spark orbiting the rune
+    s.add(f'<g transform="translate({W / 2} 180)"><g class="orbit"><circle cx="150" cy="0" r="3.2" fill="{t["gold_hi"]}"/>'
+          f'<circle cx="150" cy="0" r="9" fill="{t["gold_hi"]}" opacity=".18"/></g></g>')
+    s.css.append('.orbit{animation:spin 26s linear infinite}')
     # shooting star
     s.add(f'<g class="shoot"><path d="M0 0h-120" stroke="{t["gold_hi"]}" stroke-width="1.6" stroke-linecap="round" opacity=".8"/></g>')
     s.css.append('.shoot{transform:translate(1050px,40px) rotate(160deg);opacity:0;animation:shoot 11s ease-in 3s infinite}'
@@ -163,8 +183,14 @@ def banner(t, mode):
     # divider with diamond
     s.add(f'<path d="M{W / 2 - 170} 238h150M{W / 2 + 20} 238h150" stroke="{t["gold"]}" stroke-opacity=".6"/>'
           f'<path d="M{W / 2} 232l6 6-6 6-6-6z" fill="{t["gold"]}"/>')
-    s.text(W / 2, 282, 'Agentic AI  ·  LLMOps  ·  RAG  ·  Reinforcement Learning for Game AI', size=23,
-           fill=t['text'], weight=600, anchor='middle')
+    for i, line in enumerate(['Agentic AI & multi-agent systems', 'LLMOps, RAG & fine-tuning in production',
+                              'Reinforcement learning for game AI']):
+        s.text(W / 2, 282, line, size=24, fill=t['text'], weight=600, anchor='middle',
+               extra=f'class="cyc" style="animation-delay:{i * 4}s"')
+    s.css.append('.cyc{opacity:0;transform-box:fill-box;transform-origin:center;animation:cyc 12s ease-in-out infinite}'
+                 '@keyframes cyc{0%{opacity:0;transform:translateY(10px)}6%,29%{opacity:1;transform:none}'
+                 '35%,100%{opacity:0;transform:translateY(-8px)}}'
+                 '@media (prefers-reduced-motion:reduce){.cyc{opacity:0}.cyc:first-of-type{opacity:1}}')
     s.text(W / 2, 320, 'M.S. Applied Machine Learning, University of Maryland  ·  Open to work', size=18,
            fill=t['muted'], anchor='middle')
     s.save(f'banner-{mode}.svg')
@@ -207,6 +233,9 @@ def title(t, mode, name, label):
     s.add(f'<path d="M4 34l6-6 6 6-6 6z" fill="{t["gold"]}"/>')
     s.text(28, 45, label.upper(), 'serif', 30, t['title'], 700, ls=2.5)
     s.add(f'<path d="M{40 + tw} 34H{W - 4}" stroke="{t["gold"]}" stroke-opacity=".45"/>')
+    s.add(f'<circle cx="{40 + tw}" cy="34" r="2.6" fill="{t["gold_hi"]}" class="run"/>')
+    s.css.append(f'.run{{animation:run 9s ease-in-out infinite}}@keyframes run{{0%{{transform:translateX(0);opacity:0}}'
+                 f'10%{{opacity:1}}60%{{transform:translateX({W - 50 - tw:.0f}px);opacity:0}}100%{{opacity:0}}}}')
     s.save(f'title-{name}-{mode}.svg')
 
 
@@ -228,6 +257,8 @@ def highlights(t, mode):
     for i, (v, l, sub, x_) in enumerate(HIGHLIGHTS):
         x = i * (cw + gap)
         panel(s, t, x, 2, cw, H - 4)
+        s.add(f'<rect x="{x + .75}" y="2.75" width="{cw - 1.5}" height="{H - 5.5}" rx="16" fill="none" stroke="{t["gold_hi"]}" '
+              f'stroke-width="2" pathLength="1000" class="trail" style="animation-delay:-{i * 2.5}s"/>')
         s.text(x + 24, 62, v, 'serif', 34, 'url(#foil)' if i == 0 else t['gold_hi'], 700)
         for j, ln in enumerate(wrap(l, 'sans', 17, cw - 48, True)):
             s.text(x + 24, 98 + j * 22, ln, size=17, fill=t['title'], weight=800)
@@ -235,6 +266,8 @@ def highlights(t, mode):
             s.text(x + 24, 150 + j * 20, ln, size=15, fill=t['muted'])
         s.add(f'<path d="M{x + 24} {H - 36}h{cw - 48}" stroke="{t["line"]}"/>')
         s.text(x + 24, H - 16, x_, size=13.5, fill=t['gold'], weight=800)
+    s.css.append('.trail{stroke-dasharray:90 910;animation:trail 10s linear infinite;opacity:.85}'
+                 '@keyframes trail{to{stroke-dashoffset:-1000}}')
     s.save(f'highlights-{mode}.svg')
 
 
@@ -267,6 +300,62 @@ PROJECTS = [
 ]
 
 
+def illo(svg, t, slug, a, cx, cy):
+    """A small looping illustration per project, drawn around (cx, cy)."""
+    g = lambda body: svg.add(f'<g transform="translate({cx} {cy})" fill="none" stroke="{a}" stroke-width="2" '
+                             f'stroke-linecap="round" stroke-linejoin="round">{body}</g>')
+    css = svg.css.append
+    css('.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 3s ease-in-out infinite}'
+        '@keyframes pulse{50%{transform:scale(1.18);opacity:.55}}'
+        '.ripple{transform-box:fill-box;transform-origin:center;animation:ripple 3.6s ease-out infinite}'
+        '@keyframes ripple{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.6);opacity:0}}'
+        '.rot{animation:spin 14s linear infinite}.rotf{animation:spin 4s linear infinite}'
+        '.blink{animation:blink 2.4s ease-in-out infinite}@keyframes blink{50%{opacity:.15}}')
+    if slug == 'pharmachain':   # live telemetry trace with a heartbeat spike
+        d = 'M-62 0H-30L-22 -14L-12 22L-2 -34L8 16L14 0H62'
+        g(f'<rect x="-70" y="-44" width="140" height="88" rx="12" stroke-opacity=".35"/>'
+          f'<path d="{d}" stroke-opacity=".25"/><path d="{d}" pathLength="100" class="ecg"/>'
+          f'<circle cx="52" cy="-30" r="4" fill="{a}" class="blink"/>')
+        css('.ecg{stroke-dasharray:28 72;animation:ecg 2.6s linear infinite}@keyframes ecg{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}')
+    elif slug == 'nemesis':     # the boss's eye, watching
+        g(f'<circle r="44" stroke-dasharray="6 9" stroke-opacity=".6" class="rot"/>'
+          f'<path d="M-40 0Q0 -34 40 0Q0 34 -40 0Z"/><circle r="11" fill="{a}" class="pulse"/>'
+          f'<path d="M-52 -40l10 10M52 -40l-10 10M-52 40l10-10M52 40l-10-10" stroke-opacity=".7"/>')
+    elif slug == 'empathrag':   # a guardrail shield with care rippling out
+        g(f'<circle r="30" class="ripple"/><circle r="30" class="ripple" style="animation-delay:1.8s"/>'
+          f'<path d="M0 -36L28 -24V2C28 20 14 32 0 38C-14 32 -28 20 -28 2V-24Z" fill="{t["surface"]}"/>'
+          f'<path d="M0 16C-10 8 -15 2 -15 -5A7 7 0 0 1 0 -9A7 7 0 0 1 15 -5C15 2 10 8 0 16Z" fill="{a}" stroke="none"/>')
+    elif slug == 'recon':       # radar sweep that finds a stale claim
+        svg.add(f'<defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{a}" stop-opacity="0"/>'
+                f'<stop offset="1" stop-color="{a}" stop-opacity=".55"/></linearGradient></defs>')
+        g(f'<circle r="44" stroke-opacity=".5"/><circle r="28" stroke-opacity=".35"/><circle r="12" stroke-opacity=".3"/>'
+          f'<g class="rotf"><path d="M0 0L44 0A44 44 0 0 0 31 -31Z" fill="url(#sw)" stroke="none"/></g>'
+          f'<circle cx="20" cy="-18" r="3.5" fill="{a}" stroke="none" class="blink"/>'
+          f'<circle cx="-24" cy="14" r="3.5" fill="{a}" stroke="none" class="blink" style="animation-delay:1.2s"/>')
+        css('.rotf{animation-duration:3.2s}')
+    elif slug == 'irminsul':    # the world tree, leaves glowing in turn
+        leaves = [(-30, -26), (-12, -40), (10, -42), (30, -28), (-36, -6), (36, -8), (0, -24)]
+        lv = ''.join(f'<circle cx="{x}" cy="{y}" r="7" fill="{a}" stroke="none" class="blink" style="animation-delay:{i * .35:.2f}s"/>'
+                     for i, (x, y) in enumerate(leaves))
+        g(f'<path d="M0 44V-6M0 16L-22 -2M0 6L22 -10M0 -6L-14 -26M0 -6L14 -30M-22 -2L-34 -8M22 -10L34 -10"/>'
+          f'<path d="M-40 44Q-20 36 0 44Q20 36 40 44" stroke-opacity=".6"/>{lv}')
+    elif slug == 'docpilot':    # a document scanned under a lock
+        g(f'<path d="M-30 -42H14L32 -24V42H-30Z" fill="{t["surface"]}"/><path d="M14 -42V-24H32" />'
+          f'<path d="M-18 -16H20M-18 -4H20M-18 8H20M-18 20H8" stroke-opacity=".5"/>'
+          f'<path d="M-36 -20H38" stroke-width="3" class="scan"/>'
+          f'<rect x="22" y="22" width="22" height="18" rx="4" fill="{a}" stroke="none"/><path d="M27 22V16A6 6 0 0 1 39 16V22"/>')
+        css('.scan{animation:scan 2.8s ease-in-out infinite alternate}@keyframes scan{from{transform:translateY(-14px)}to{transform:translateY(46px)}}')
+    elif slug == 'eldervale':   # one hums, one weaves: a note flows between two heroes
+        g(f'<circle cx="-46" cy="10" r="10" fill="{a}" stroke="none"/><circle cx="46" cy="10" r="10" fill="{t["acc"]["anemo"]}" stroke="none"/>'
+          f'<path d="M-34 10C-18 -20 18 40 34 10" stroke-opacity=".3"/><path d="M-34 10C-18 -20 18 40 34 10" pathLength="100" class="flow"/>'
+          f'<path d="M-6 -28V-44L6 -47V-31" stroke-width="2.2" class="pulse"/><circle cx="-9" cy="-28" r="4" fill="{a}" stroke="none" class="pulse"/>')
+        css('.flow{stroke-dasharray:22 78;animation:ecg 2.4s linear infinite}@keyframes ecg{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}')
+    elif slug == 'vrgen':       # a 360° sphere turning
+        g(f'<circle r="42"/><ellipse rx="42" ry="14" stroke-opacity=".5"/><ellipse rx="42" ry="30" stroke-opacity=".3"/>'
+          f'<ellipse rx="16" ry="42" class="turn"/><ellipse rx="34" ry="42" stroke-opacity=".35" class="turn" style="animation-delay:-2s"/>')
+        css('.turn{animation:turn 4s ease-in-out infinite}@keyframes turn{50%{transform:scaleX(-1)}}')
+
+
 def card(t, mode, p):
     W, H = 620, 330
     a = t['acc'][p['acc']]
@@ -274,7 +363,7 @@ def card(t, mode, p):
     panel(s, t, 0, 0, W, H, accent=a)
     s.add(f'<rect x="1.5" y="1.5" width="5" height="{H - 3}" rx="2.5" fill="{a}"/>')
     s.text(32, 46, p['kicker'], size=13.5, fill=a, weight=800, ls=2.2)
-    s.add(f'<text x="{W - 30}" y="47" font-family="Nunito Sans" font-size="20" fill="{t["gold"]}" text-anchor="end">↗</text>'); s.chars['sans'] += '↗'
+    illo(s, t, p['slug'], a, W - 92, 92)
     s.text(32, 90, p['name'], 'serif', 31 if len(p['name']) < 16 else 26, t['title'], 700, ls=.5)
     s.text(32, 120, p['sub'], size=16.5, fill=t['muted'])
     s.text(32, 180, p['metric'], 'serif', 40, t['gold_hi'], 700)
@@ -295,6 +384,26 @@ def card(t, mode, p):
         s.text(x + tw / 2, 290, tag, size=13.5, fill=t['text'], weight=700, anchor='middle')
         x += tw + 8
     s.save(f'card-{p["slug"]}-{mode}.svg')
+
+
+def now_strip(t, mode):
+    W, H = 1280, 92
+    s = SVG(W, H, 'Now: open to AI/ML Engineer roles. Latest build: Eldervale, a browser co-op game. Latest research: human vs AI playtesters.')
+    panel(s, t, 0, 0, W, H)
+    ok = t['acc']['anemo']
+    s.add(f'<circle cx="40" cy="46" r="7" fill="{ok}"/><circle cx="40" cy="46" r="7" fill="none" stroke="{ok}" stroke-width="2" class="ping"/>')
+    s.css.append('.ping{transform-box:fill-box;transform-origin:center;animation:ping 2.2s ease-out infinite}'
+                 '@keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(2.8);opacity:0}}')
+    items = [('NOW', 'Open to AI/ML Engineer roles'), ('LATEST BUILD', 'Eldervale, a browser co-op game'),
+             ('LATEST RESEARCH', 'Human vs AI playtesters')]
+    x = 64
+    for i, (k, v) in enumerate(items):
+        s.text(x, 38, k, size=12.5, fill=t['gold'], weight=800, ls=2.4)
+        s.text(x, 64, v, size=18, fill=t['title'], weight=700)
+        x += max(width(v, 'sans', 18, True), width(k, 'sans', 12.5, True) + 30) + 70
+        if i < len(items) - 1:
+            s.add(f'<path d="M{x - 35} 24V68" stroke="{t["line2"]}"/>')
+    s.save(f'now-{mode}.svg')
 
 
 # ───────────────────────── footer ─────────────────────────
@@ -319,7 +428,7 @@ TITLES = [('highlights', 'Highlights'), ('work', 'Featured Work'), ('live', 'Try
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
     for mode, t in THEMES.items():
-        banner(t, mode); highlights(t, mode); footer(t, mode)
+        banner(t, mode); highlights(t, mode); footer(t, mode); now_strip(t, mode)
         for b in BUTTONS: button(t, mode, *b)
         for n, l in TITLES: title(t, mode, n, l)
         for p in PROJECTS: card(t, mode, p)

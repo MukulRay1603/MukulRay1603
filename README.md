@@ -8,6 +8,10 @@
 <a href="https://huggingface.co/spaces/MukulRay"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-hf-dark.svg"><img src="assets/btn-hf-light.svg" alt="Hugging Face" height="44"></picture></a>
 <a href="mailto:ai.mukulray@gmail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-email-dark.svg"><img src="assets/btn-email-light.svg" alt="Email" height="44"></picture></a>
 
+<br>
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/now-dark.svg"><img src="assets/now-light.svg" alt="Now: open to AI/ML Engineer roles. Latest build: Eldervale, a browser co-op game. Latest research: human vs AI playtesters." width="100%"></picture>
+
 </div>
 
 <br>
