@@ -388,6 +388,33 @@ def now_strip(t, mode):
         if i: s.add(f'<path d="M{x - 18} 24V72" stroke="{t["line2"]}"/>')
     s.save(f'now-{mode}.svg')
 
+def _lum(h):
+    c = [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)]
+    c = [x / 12.92 if x <= .03928 else ((x + .055) / 1.055) ** 2.4 for x in c]
+    return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]
+
+
+def toolkit(t, mode):
+    import json
+    icons = json.load(open(os.path.join(HERE, 'icons.json')))
+    W, cols, tile, gapy = 880, 8, 64, 108
+    rows = (len(icons) + cols - 1) // cols
+    H = rows * gapy + 8
+    s = SVG(W, H, 'Toolkit: ' + ', '.join(i['label'] for i in icons))
+    surf = _lum(t['surface'].lstrip('#'))
+    cw = W / cols
+    for n, ic in enumerate(icons):
+        cx, y = cw * (n % cols) + cw / 2, 4 + (n // cols) * gapy
+        L = _lum(ic['hex'])
+        ratio = (max(L, surf) + .05) / (min(L, surf) + .05)
+        col = '#' + ic['hex'] if ratio >= 2.4 else t['title']
+        s.add(f'<rect x="{cx - tile / 2}" y="{y}" width="{tile}" height="{tile}" rx="16" fill="{t["surface"]}" '
+              f'stroke="{t["line2"]}" stroke-width="1.5"/>')
+        s.add(f'<svg x="{cx - 17}" y="{y + 15}" width="34" height="34" viewBox="0 0 24 24"><path fill="{col}" d="{ic["path"]}"/></svg>')
+        s.text(cx, y + tile + 24, ic['label'], size=14, fill=t['text'], weight=700, anchor='middle')
+    s.save(f'toolkit-{mode}.svg')
+
+
 # ───────────────────────── footer ─────────────────────────
 def footer(t, mode):
     W, H = 880, 110
@@ -409,7 +436,7 @@ TITLES = [('highlights', 'Highlights'), ('work', 'Featured Work'), ('live', 'Try
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
     for mode, t in THEMES.items():
-        banner(t, mode); highlights(t, mode); footer(t, mode); now_strip(t, mode)
+        banner(t, mode); highlights(t, mode); footer(t, mode); now_strip(t, mode); toolkit(t, mode)
         for b in BUTTONS: button(t, mode, *b)
         for n, l in TITLES: title(t, mode, n, l)
         for p in PROJECTS: card(t, mode, p)
