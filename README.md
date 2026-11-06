@@ -10,7 +10,7 @@
 
 <br>
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/now-dark.svg"><img src="assets/now-light.svg" alt="Now: open to AI/ML Engineer roles. Latest build: Eldervale, a browser co-op game. Latest research: human vs AI playtesters." width="100%"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/now-dark.svg"><img src="assets/now-light.svg" alt="Now: open to AI/ML Engineer roles. Latest build: Irminsul v1, cited answers. Latest research: human vs AI playtesters." width="100%"></picture>
 
 </div>
 
@@ -37,7 +37,6 @@
   <a href="https://github.com/MukulRay1603/DocPilot"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-docpilot-dark.svg"><img src="assets/card-docpilot-light.svg" alt="DocPilot" width="49%"></picture></a>
 </p>
 <p align="center">
-  <a href="https://github.com/MukulRay1603/eldervale"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-eldervale-dark.svg"><img src="assets/card-eldervale-light.svg" alt="Eldervale" width="49%"></picture></a>
   <a href="https://ieeexplore.ieee.org/document/10467441"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-vrgen-dark.svg"><img src="assets/card-vrgen-light.svg" alt="Voice-Driven Panoramic VR Generation (IEEE IDCIoT 2024)" width="49%"></picture></a>
 </p>
 
@@ -60,7 +59,7 @@
 
 <div align="center">
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-dark.svg"><img src="assets/toolkit-light.svg" alt="Toolkit: Python, PyTorch, Hugging Face, LangChain, scikit-learn, ONNX, Ray, CUDA, FastAPI, Docker, AWS, GitHub Actions, MLflow, Unity, Linux, OpenCV" width="100%"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-dark.svg"><img src="assets/toolkit-light.svg" alt="Toolkit: Python, PyTorch, Hugging Face, LangChain, scikit-learn, ONNX, Ray, CUDA, FastAPI, Docker, AWS, GitHub Actions, MLflow, Unity, Git, OpenCV" width="100%"></picture>
 
 **GenAI & agents** · LangGraph · LangChain · RAG · QLoRA / LoRA · Pinecone · FAISS · Guardrails<br>
 **ML & RL** · PyTorch · XGBoost · Ray RLlib · Unity ML-Agents · Hugging Face Transformers<br>

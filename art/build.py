@@ -265,8 +265,8 @@ def highlights(t, mode):
 # ───────────────────────── project cards ─────────────────────────
 PROJECTS = [
     dict(slug='pharmachain', acc='anemo', kicker='MULTI-AGENT · 1ST PLACE, $4K', name='PharmaChain',
-         sub='AI cargo monitor for pharma cold-chain risk', metric='0.9446', mlabel='XGBoost test ROC-AUC, explained with SHAP',
-         minis=[('8', 'LangGraph agents'), ('12–15 s', 'alert → action')], tags=['LangGraph', 'XGBoost', 'SHAP', 'RAG']),
+         sub='AI cargo monitor for pharma cold-chain risk', metric='12–15 s', mlabel='from alert to an approved plan, vs the usual 6–8 hours',
+         minis=[], tags=['LangGraph', 'FastAPI', 'LLM failover', 'Team of 5']),
     dict(slug='nemesis', acc='pyro', kicker='REINFORCEMENT LEARNING', name='Nemesis',
          sub='Distributed RL boss AI with real-time LLM narration', metric='+85%', mlabel='longer survival than a scripted FSM boss',
          minis=[('2.6×', 'Ray RLlib, 1 → 8 workers'), ('<2 ms', 'per frame in Unity Sentis')], tags=['PPO', 'Ray RLlib', 'ONNX', 'Unity Sentis']),
@@ -274,17 +274,14 @@ PROJECTS = [
          sub='NLI safety guardrail & emotion-conditioned RAG', metric='0.9629', mlabel='crisis recall, DeBERTa NLI guardrail',
          minis=[('1.67M', 'vector FAISS index'), ('0.88', 'emotion alignment (BM25: 0.30)')], tags=['DeBERTa', 'FAISS', 'Captum', 'Mistral 7B']),
     dict(slug='recon', acc='electro', kicker='AGENTIC RESEARCH', name='RECON',
-         sub='Multi-agent ML research navigator', metric='52% vs 0%', mlabel='stale ML claims caught vs single-pass RAG',
-         minis=[('43.9%', 'top-paper match vs 32.3%'), ('4', 'LangGraph agents')], tags=['LangGraph', 'LLM-as-a-Judge', 'Groq', 'Gradio']),
+         sub='Multi-agent ML research navigator', metric='44% vs 0%', mlabel='of stale claims caught, vs a single-pass RAG baseline',
+         minis=[], tags=['LangGraph', 'Critic agent', 'Groq', 'Gradio']),
     dict(slug='irminsul', acc='dendro', kicker='CITED RAG · LLMOPS · LIVE BETA', name='Irminsul',
          sub='Leak-free Genshin assistant that cites every answer', metric='95.8%', mlabel='of the live test set scored, all 19 leak and safety probes handled',
          minis=[('0.946', 'right source in top 8'), ('$0', 'running cost')], tags=['Hybrid search', 'FastAPI', 'ONNX', 'GitHub Actions']),
     dict(slug='docpilot', acc='cryo', kicker='SECURE DOCUMENT AI', name='DocPilot',
-         sub='Secure document intelligence platform', metric='90 ms', mlabel='P95 latency, RoBERTa-squad2 ONNX INT8',
-         minis=[('66.0%', 'end-to-end F1'), ('RBAC', 'injection & PII defences')], tags=['BM25 + BGE', 'Reranking', 'ONNX', 'RBAC']),
-    dict(slug='eldervale', acc='geo', kicker='GAME DEV · BROWSER CO-OP', name='Eldervale',
-         sub='Cozy 3D two-player mystery game', metric='~2 MB', mlabel='to start playing, peer-to-peer co-op over WebRTC',
-         minis=[('130', 'automated tests'), ('3', 'endings, solo or co-op')], tags=['Three.js', 'TypeScript', 'WebRTC', 'Vite']),
+         sub='Secure document Q&A service', metric='4× smaller', mlabel='model with ONNX INT8, 2–3× faster per inference on CPU',
+         minis=[], tags=['FastAPI', 'Hybrid search', 'RBAC', 'PII redaction']),
     dict(slug='vrgen', acc='gold', kicker='GENERATIVE AI · IEEE IDCIOT 2024', name='Panoramic VR Generation',
          sub='Peer-reviewed speech → 360° scene pipeline', metric='2.3×', mlabel='throughput from attention slicing + xFormers',
          minis=[('10 GB', 'VRAM budget'), ('IEEE', 'peer-reviewed')], tags=['Whisper', 'GPT-Neo', 'Stable Diffusion']),
@@ -373,13 +370,13 @@ def card(t, mode, p):
 
 def now_strip(t, mode):
     W, H = 880, 96
-    s = SVG(W, H, 'Now: open to AI/ML Engineer roles. Latest build: Eldervale, a browser co-op game. Latest research: human vs AI playtesters.')
+    s = SVG(W, H, 'Now: open to AI/ML Engineer roles. Latest build: Irminsul v1, cited answers. Latest research: human vs AI playtesters.')
     panel(s, t, 0, 0, W, H)
     ok = t['acc']['anemo']
     s.add(f'<circle cx="34" cy="48" r="7" fill="{ok}"/><circle cx="34" cy="48" r="7" fill="none" stroke="{ok}" stroke-width="2" class="ping"/>')
     s.css.append('.ping{transform-box:fill-box;transform-origin:center;animation:ping 2.2s ease-out infinite}'
                  '@keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(2.8);opacity:0}}')
-    items = [('NOW', 'Open to AI/ML roles'), ('LATEST BUILD', 'Eldervale, browser co-op'), ('LATEST RESEARCH', 'Human vs AI playtesters')]
+    items = [('NOW', 'Open to AI/ML roles'), ('LATEST BUILD', 'Irminsul v1, cited answers'), ('LATEST RESEARCH', 'Human vs AI playtesters')]
     colw = (W - 60) / 3
     for i, (k, v) in enumerate(items):
         x = 58 + i * colw
