@@ -26,18 +26,21 @@
 
 <p align="center">
   <a href="https://github.com/MukulRay1603/PharmaChain"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-pharmachain-dark.svg"><img src="assets/card-pharmachain-light.svg" alt="PharmaChain" width="49%"></picture></a>
+  <a href="https://github.com/MukulRay1603/Irminsul"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-irminsul-dark.svg"><img src="assets/card-irminsul-light.svg" alt="Irminsul" width="49%"></picture></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/MukulRay1603/project-recon"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-recon-dark.svg"><img src="assets/card-recon-light.svg" alt="RECON" width="49%"></picture></a>
   <a href="https://github.com/MukulRay1603/nemesis-boss-ai"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-nemesis-dark.svg"><img src="assets/card-nemesis-light.svg" alt="Nemesis" width="49%"></picture></a>
 </p>
-<p align="center">
-  <a href="https://github.com/MukulRay1603/Empath-RAG"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-empathrag-dark.svg"><img src="assets/card-empathrag-light.svg" alt="EmpathRAG" width="49%"></picture></a>
-  <a href="https://github.com/MukulRay1603/project-recon"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-recon-dark.svg"><img src="assets/card-recon-light.svg" alt="RECON" width="49%"></picture></a>
-</p>
-<p align="center">
-  <a href="https://github.com/MukulRay1603/Irminsul"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-irminsul-dark.svg"><img src="assets/card-irminsul-light.svg" alt="Irminsul" width="49%"></picture></a>
-  <a href="https://github.com/MukulRay1603/DocPilot"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-docpilot-dark.svg"><img src="assets/card-docpilot-light.svg" alt="DocPilot" width="49%"></picture></a>
-</p>
+
 <p align="center">
   <a href="https://ieeexplore.ieee.org/document/10467441"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-vrgen-dark.svg"><img src="assets/card-vrgen-light.svg" alt="Voice-Driven Panoramic VR Generation (IEEE IDCIoT 2024)" width="49%"></picture></a>
+  <a href="https://github.com/MukulRay1603/DocPilot"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-docpilot-dark.svg"><img src="assets/card-docpilot-light.svg" alt="DocPilot" width="49%"></picture></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/MukulRay1603/Empath-RAG"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-empathrag-dark.svg"><img src="assets/card-empathrag-light.svg" alt="EmpathRAG" width="49%"></picture></a>
 </p>
 
 <br>
