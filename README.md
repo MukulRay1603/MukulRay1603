@@ -72,10 +72,10 @@
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/title-journal-dark.svg"><img src="assets/title-journal-light.svg" alt="From the Journal" width="100%"></picture>
 
+- **[Rebuilding Irminsul: From Demo to Something You Can Trust](https://mukulray1603.github.io/journal.html)** · Nov 2026
 - **[Human vs AI Playtesters: 22 Issues, Only 2 in Common](https://mukulray1603.github.io/journal.html)** · Oct 2026
 - **[I Built a Two-Player Mystery Game in 3.5 Weeks](https://mukulray1603.github.io/journal.html)** · Oct 2026
 - **[6 Vikings, 2 Continents, 1 Server](https://mukulray1603.github.io/journal.html)** · Sep 2026
-- **[We Won. Here's What I Actually Learned.](https://mukulray1603.github.io/journal.html)** · Apr 2026
 
 <br>
 
