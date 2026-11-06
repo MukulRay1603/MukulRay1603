@@ -60,11 +60,12 @@
 
 <div align="center">
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-dark.svg"><img src="assets/toolkit-light.svg" alt="Toolkit: Python, PyTorch, Hugging Face, LangChain, scikit-learn, ONNX, Ray, CUDA, FastAPI, Docker, AWS, GitHub Actions, MLflow, Unity, C++, OpenCV" width="100%"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-dark.svg"><img src="assets/toolkit-light.svg" alt="Toolkit: Python, PyTorch, Hugging Face, LangChain, scikit-learn, ONNX, Ray, CUDA, FastAPI, Docker, AWS, GitHub Actions, MLflow, Unity, Linux, OpenCV" width="100%"></picture>
 
 **GenAI & agents** · LangGraph · LangChain · RAG · QLoRA / LoRA · Pinecone · FAISS · Guardrails<br>
 **ML & RL** · PyTorch · XGBoost · Ray RLlib · Unity ML-Agents · Hugging Face Transformers<br>
-**MLOps** · MLflow · ONNX · Docker · GitHub Actions · AWS (EC2, S3) · Azure
+**MLOps** · MLflow · ONNX · Docker · GitHub Actions · AWS (EC2, S3) · Azure<br>
+**Languages** · Python · SQL · C# · C · C++
 
 </div>
 
