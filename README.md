@@ -66,7 +66,7 @@
 
 **GenAI & agents** · LangGraph · LangChain · RAG · QLoRA / LoRA · Pinecone · FAISS · Guardrails<br>
 **ML & RL** · PyTorch · XGBoost · Ray RLlib · Unity ML-Agents · Hugging Face Transformers<br>
-**MLOps** · MLflow · ONNX · Docker · GitHub Actions · AWS (EC2, S3) · Azure<br>
+**MLOps** · MLflow · ONNX · Docker · GitHub Actions · AWS (EC2, S3)<br>
 **Languages** · Python · SQL · C# · C · C++
 
 </div>

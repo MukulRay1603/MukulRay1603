@@ -281,7 +281,7 @@ PROJECTS = [
          minis=[('0.946', 'right source in top 8'), ('$0', 'running cost')], tags=['Hybrid search', 'FastAPI', 'ONNX', 'GitHub Actions']),
     dict(slug='docpilot', acc='cryo', kicker='SECURE DOCUMENT AI', name='DocPilot',
          sub='Secure document Q&A service', metric='4× smaller', mlabel='model with ONNX INT8, 2–3× faster per inference on CPU',
-         minis=[], tags=['FastAPI', 'Hybrid search', 'RBAC', 'PII redaction']),
+         minis=[], tags=['FastAPI', 'Hybrid search', 'RBAC', 'Web UI']),
     dict(slug='vrgen', acc='gold', kicker='GENERATIVE AI · IEEE IDCIOT 2024', name='Panoramic VR Generation',
          sub='Peer-reviewed speech → 360° scene pipeline', metric='2.3×', mlabel='throughput from attention slicing + xFormers',
          minis=[('10 GB', 'VRAM budget'), ('IEEE', 'peer-reviewed')], tags=['Whisper', 'GPT-Neo', 'Stable Diffusion']),
